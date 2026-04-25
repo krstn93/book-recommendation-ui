@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+
+.app-shell {
+  font-family: Arial, sans-serif;
+  margin: 4rem auto;
+  max-width: 42rem;
+  text-align: center;
+}
