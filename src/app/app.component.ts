@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { MenubarModule } from 'primeng/menubar';
-import { BooksGridComponent } from './books/books-grid/books-grid.component';
+import { BookModule } from './books/book.module';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [BooksGridComponent, MenubarModule],
+  imports: [BookModule, MenubarModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
