@@ -58,7 +58,7 @@ export class BooksGridComponent implements OnInit {
           this.errorMessage =
             'Books could not be loaded. Check that the API is running and try again.';
 
-          return of({ result: [], nextCursor: null });
+          return of({ result: [], nextCursor: isFirstPage ? null : this.nextCursor });
         }),
         finalize(() => {
           if (isFirstPage) {
