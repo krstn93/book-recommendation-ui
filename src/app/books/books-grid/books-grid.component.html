@@ -1,0 +1,60 @@
+<section class="books-section" aria-labelledby="books-grid-title">
+  <div class="section-heading">
+    <p class="eyebrow">Recommended collection</p>
+    <h1 id="books-grid-title">Books to Explore</h1>
+    <p class="section-intro">
+      Browse classic and contemporary recommendations pulled from the backend.
+    </p>
+  </div>
+
+  @if (isLoading) {
+    <div class="status-panel" role="status" aria-live="polite">
+      <i class="pi pi-spin pi-spinner" aria-hidden="true"></i>
+      <span>Loading books</span>
+    </div>
+  } @else if (errorMessage) {
+    <div class="status-panel error" role="alert">
+      <i class="pi pi-exclamation-circle" aria-hidden="true"></i>
+      <span>{{ errorMessage }}</span>
+    </div>
+  } @else if (!books.length) {
+    <div class="status-panel" role="status">
+      <i class="pi pi-book" aria-hidden="true"></i>
+      <span>No books are available yet.</span>
+    </div>
+  } @else {
+    <div class="books-grid">
+      @for (book of books; track book.isbn) {
+        <article class="book-card">
+          <div class="cover-frame">
+            <img
+              [src]="book.coverUrl"
+              [alt]="book.title + ' cover'"
+              width="260"
+              height="390"
+            />
+          </div>
+
+          <div class="book-details">
+            <div>
+              <p class="book-author">{{ book.author }}</p>
+              <h2>{{ book.title }}</h2>
+              <p class="book-isbn">ISBN {{ book.isbn }}</p>
+            </div>
+
+            <div class="book-meta" aria-label="Book details">
+              <span>
+                <i class="pi pi-calendar" aria-hidden="true"></i>
+                {{ book.publishedYear }}
+              </span>
+              <span>
+                <i class="pi pi-star-fill" aria-hidden="true"></i>
+                {{ book.rating }}
+              </span>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  }
+</section>
