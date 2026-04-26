@@ -32,6 +32,8 @@
               [alt]="book.title + ' cover'"
               width="260"
               height="390"
+              decoding="async"
+              loading="lazy"
             />
           </div>
 
@@ -56,5 +58,23 @@
         </article>
       }
     </div>
+
+    @if (nextCursor) {
+      <div class="load-more-actions">
+        <button
+          class="load-more-button"
+          type="button"
+          [disabled]="isLoadingMore"
+          (click)="loadMore()"
+        >
+          @if (isLoadingMore) {
+            <i class="pi pi-spin pi-spinner" aria-hidden="true"></i>
+            Loading
+          } @else {
+            Load more
+          }
+        </button>
+      </div>
+    }
   }
 </section>
