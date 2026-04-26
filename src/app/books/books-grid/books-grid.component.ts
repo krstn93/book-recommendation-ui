@@ -9,7 +9,7 @@ import { catchError, finalize, of } from 'rxjs';
 import { BookService } from '../book.service';
 import { BookViewModel } from '../models/book-view.model';
 
-const BooksPageSize = 9;
+const BooksPageSize = 10;
 
 @Component({
   selector: 'app-books-grid',
