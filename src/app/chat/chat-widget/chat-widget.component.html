@@ -1,0 +1,66 @@
+<section class="chat-widget" aria-label="AI chat assistant">
+  @if (isOpen) {
+    <div class="chat-panel" role="dialog" aria-label="Book recommendation chat">
+      <header class="chat-header">
+        <div>
+          <p>AI Assistant</p>
+          <span>Book recommendation chat</span>
+        </div>
+        <button
+          class="icon-button"
+          type="button"
+          aria-label="Close chat"
+          (click)="closeChat()"
+        >
+          <i class="pi pi-times" aria-hidden="true"></i>
+        </button>
+      </header>
+
+      <div class="message-list" aria-live="polite">
+        @for (message of messages; track message.id) {
+          <article class="message" [class.user-message]="message.role === 'user'">
+            <span>{{ message.content }}</span>
+          </article>
+        }
+
+        @if (isWaitingForResponse) {
+          <article class="message typing" role="status">
+            <i class="pi pi-spin pi-spinner" aria-hidden="true"></i>
+            <span>Thinking</span>
+          </article>
+        }
+      </div>
+
+      <form class="chat-form" (submit)="$event.preventDefault(); sendMessage()">
+        <label class="sr-only" for="chat-message">Message</label>
+        <input
+          #messageInput
+          id="chat-message"
+          name="message"
+          type="text"
+          autocomplete="off"
+          placeholder="Ask for book ideas"
+          [(ngModel)]="draftMessage"
+        />
+        <button
+          class="send-button"
+          type="submit"
+          aria-label="Send message"
+          [disabled]="!draftMessage.trim() || isWaitingForResponse"
+        >
+          <i class="pi pi-send" aria-hidden="true"></i>
+        </button>
+      </form>
+    </div>
+  }
+
+  <button
+    class="launcher-button"
+    type="button"
+    [attr.aria-expanded]="isOpen"
+    aria-label="Open AI chat"
+    (click)="toggleChat()"
+  >
+    <i class="pi pi-comments" aria-hidden="true"></i>
+  </button>
+</section>
