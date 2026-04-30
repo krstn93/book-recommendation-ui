@@ -1,4 +1,6 @@
 name: Check
+permissions: 
+  contents: read
 
 on:
   pull_request:
@@ -11,7 +13,7 @@ on:
 
 jobs:
   check:
-    name: Build, lint, and test
+    name: check
     runs-on: ubuntu-latest
 
     steps:
